@@ -1,1 +1,1 @@
-# Inicio de cuaderno de notas
+# Código de inicio para Bloc de notas
