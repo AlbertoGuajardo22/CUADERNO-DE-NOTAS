@@ -48,7 +48,7 @@ const deleteNote = (id) =>
     headers: {
       'Content-Type': 'application/json',
     },
-  });
+  }).then((response) => console.log(response));
 
 const renderActiveNote = () => {
   hide(saveNoteBtn);
@@ -118,7 +118,11 @@ const handleRenderSaveBtn = () => {
 
 // Representa la lista de títulos de notas
 const renderNoteList = async (notes) => {
+  let updatedList = await getNotes()
+  updatedList = await updatedList.json()
   let jsonNotes = await notes.json();
+  console.log(updatedList)
+  console.log(jsonNotes)
   if (window.location.pathname === '/notes') {
     noteList.forEach((el) => (el.innerHTML = ''));
   }
@@ -153,7 +157,6 @@ const renderNoteList = async (notes) => {
 
     return liEl;
   };
-
   if (jsonNotes.length === 0) {
     noteListItems.push(createLi('No saved Notes', false));
   }
